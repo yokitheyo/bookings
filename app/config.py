@@ -17,6 +17,14 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     ALGORITHM: str
 
+    REDIS_HOST: str = Field(..., description="Redis host")
+    REDIS_PORT: int = Field(..., description="Redis port")
+
+    SMTP_HOST: str = Field(..., description="SMTP host")
+    SMTP_PORT: int = Field(..., description="SMTP port")
+    SMTP_USER: str = Field(..., description="SMTP user")
+    SMTP_PASS: str = Field(..., description="SMTP password")
+
     model_config = {
         "env_file": ".env",
         "env_file_encoding": "utf-8",
