@@ -14,7 +14,7 @@ router = APIRouter(prefix="/hotels", tags=["Отели"])
 
 
 @router.get("/{location}")
-@cache(expire=30)
+# @cache(expire=30)
 async def get_hotels_by_location_and_time(
     location: str,
     date_from: date = Query(..., description=f"Например, {datetime.now().date()}"),
@@ -23,9 +23,9 @@ async def get_hotels_by_location_and_time(
     ),
 ) -> List[SHotelInfo]:
     if date_from > date_to:
-        raise DateFromCannotBeAfterDateTo
+        raise DateFromCannotBeAfterDateTo()
     if (date_to - date_from).days > 31:
-        raise CannotBookHotelForLongPeriod
+        raise CannotBookHotelForLongPeriod()
     # await asyncio.sleep(3)
     hotels = await HotelDAO.find_all(location, date_from, date_to)
     return hotels

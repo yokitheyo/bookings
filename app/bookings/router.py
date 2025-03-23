@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from pydantic import parse_obj_as
 
 from app.bookings.dao import BookingDAO
-from app.bookings.schemas import SBooking, SBookingInfo
+from app.bookings.schemas import SBooking, SBookingInfo, SNewBooking
 
 from typing import List
 
@@ -36,6 +36,27 @@ async def add_booking(
     return booking_dict
     # if not booking:
     #     raise RoomCannotBeBooked()
+
+
+# @router.post("", status_code=201)
+# async def add_booking(
+#     booking: SNewBooking,
+#     user: Users = Depends(get_current_user),
+# ):
+#     booking = await BookingDAO.add(
+#         user.id,
+#         booking.room_id,
+#         booking.date_from,
+#         booking.date_to,
+#     )
+#     if not booking:
+#         raise RoomCannotBeBooked
+#     booking = parse_obj_as(SNewBooking, booking).dict()
+#     # Celery - отдельная библиотека
+#     # send_booking_confirmation_email.delay(booking, user.email)
+#     # Background Tasks - встроено в FastAPI
+#     # background_tasks.add_task(send_booking_confirmation_email, booking, user.email)
+#     return booking
 
 
 @router.delete("/{booking_id}")

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi_versioning import VersionedFastAPI
 
 from contextlib import asynccontextmanager
 
@@ -38,7 +39,12 @@ async def lifespan(app: FastAPI):
     await redis_client.close()
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(
+    lifespan=lifespan,
+    title="Бронирование Отелей",
+    version="0.1.0",
+    root_path="/api",
+)
 
 app.mount("/static", StaticFiles(directory="app/static"), "static")
 
@@ -70,6 +76,12 @@ app.add_middleware(
         "Authorization",
     ],
 )
+
+# app = VersionedFastAPI(
+#     app,
+#     version_format="{major}",
+#     prefix_format="/api/v{major}",
+# )
 
 
 admin = Admin(app, engine, authentication_backend=authentication_backend)

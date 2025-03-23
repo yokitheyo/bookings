@@ -9,7 +9,7 @@ from app.exсeptions import (
     TokenExpiredException,
     UserIsNotPresentException,
 )
-from app.users.dao import UsersDAO
+from app.users.dao import UserDAO
 from app.users.models import Users
 
 
@@ -31,7 +31,7 @@ async def get_current_user(token: str = Depends(get_token)):
     user_id: str = payload.get("sub")
     if not user_id:
         raise UserIsNotPresentException()
-    user = await UsersDAO.find_by_id(int(user_id))
+    user = await UserDAO.find_by_id(int(user_id))
     if not user:
         raise UserIsNotPresentException()
 
