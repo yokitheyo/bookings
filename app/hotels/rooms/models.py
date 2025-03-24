@@ -1,6 +1,7 @@
-from sqlalchemy import JSON, Column, Integer, String, ForeignKey, Text
-from app.database import Base
+from sqlalchemy import JSON, Column, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import relationship
+
+from app.database import Base
 
 
 class Rooms(Base):

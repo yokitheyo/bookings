@@ -1,9 +1,10 @@
-from app.config import settings
 from datetime import datetime, timedelta, timezone
+
+from jose import jwt
 from passlib.context import CryptContext
 from pydantic import EmailStr
-from jose import jwt
 
+from app.config import settings
 from app.exсeptions import IncorrectEmailOrPasswordException
 from app.users.dao import UserDAO
 
