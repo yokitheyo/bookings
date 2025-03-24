@@ -7,6 +7,7 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     MODE: Literal["DEV", "TEST", "PROD"] = "DEV"
+    LOG_LEVEL: str
 
     DB_HOST: str = Field(..., description="Database host")
     DB_PORT: int = Field(..., description="Database port")
