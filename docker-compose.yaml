@@ -1,0 +1,46 @@
+services:
+  db:
+    image: postgres:15
+    container_name: booking_db
+    environment:
+      POSTGRES_DB: booking_app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      
+
+  redis:
+    image: redis:7
+    container_name: booking_redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  booking:
+    image: booking_app
+    build:
+      context: .
+    container_name: booking_app
+    env_file:
+      - .env-non-dev
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./:/booking  # Исправленный формат
+    command: ["/booking/docker/app.sh"]
+    ports:
+      - "7777:7777"
+
+volumes:
+  postgres_data:

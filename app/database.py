@@ -12,10 +12,6 @@ else:
     DATABASE_PARAMS = {}
 
 
-print(f"Current MODE: {settings.MODE}")
-assert settings.MODE == "TEST", f"Expected MODE to be 'TEST', but got '{settings.MODE}'"
-# assert settings.MODE == "TEST"
-
 engine = create_async_engine(DATABASE_URL, **DATABASE_PARAMS)
 
 async_session_maker = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
