@@ -59,7 +59,7 @@ A modern, scalable hotel booking system built with FastAPI, featuring a comprehe
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/yokitheyo/bookings.git
 cd <project-directory>
 ```
 
