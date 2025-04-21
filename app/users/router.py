@@ -95,6 +95,6 @@ async def partial_update_user(
     return updated_user
 
 
-@router.get("/all")
-async def read_users_all(current_user: Users = Depends(get_current_admin_user)):
-    return await UserDAO.find_all()
+# @router.get("/all")
+# async def read_users_all(current_user: Users = Depends(get_current_admin_user)):
+#     return await UserDAO.find_all()
