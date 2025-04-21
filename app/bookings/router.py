@@ -9,6 +9,7 @@ from app.exсeptions import RoomFullyBooked
 from app.tasks.tasks import send_booking_confirmation_email
 from app.users.dependencies import get_current_user
 from app.users.models import Users
+from fastapi_versioning import version
 
 router = APIRouter(
     prefix="/bookings",

@@ -9,7 +9,7 @@ from app.hotels.rooms.router import get_rooms_by_time
 from app.hotels.router import get_hotel_by_id, get_hotels_by_location_and_time
 from app.utils import format_number_thousand_separator, get_month_days
 
-router = APIRouter(prefix="/pages", tags=["Фронтенд"])
+router = APIRouter(prefix="/pages", tags=["Frontend"])
 
 templates = Jinja2Templates(directory="app/templates")
 
