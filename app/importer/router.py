@@ -10,7 +10,7 @@ from app.users.dependencies import get_current_user
 
 router = APIRouter(
     prefix="/import",
-    tags=["Импорт данных в БД"],
+    tags=["Import DB"],
 )
 
 

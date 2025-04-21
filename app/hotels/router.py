@@ -9,7 +9,7 @@ from app.exсeptions import CannotBookHotelForLongPeriod, DateFromCannotBeAfterD
 from app.hotels.dao import HotelDAO
 from app.hotels.schemas import SHotel, SHotelInfo
 
-router = APIRouter(prefix="/hotels", tags=["Отели"])
+router = APIRouter(prefix="/hotels", tags=["Hotels"])
 
 
 @router.get("/{location}")
